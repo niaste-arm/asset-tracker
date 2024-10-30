@@ -10,7 +10,6 @@ click==8.1.7
 cryptography==3.4.8
 dbus-python==1.2.18
 distro==1.7.0
-distro-info===1.1build1
 dj-database-url==2.3.0
 Django==4.2.5
 django-appointment==3.6.3
@@ -45,7 +44,6 @@ PyGObject==3.42.1
 PyJWT==2.3.0
 pyparsing==2.4.7
 PySocks==1.7.1
-python-apt==2.4.0+ubuntu1
 python-dateutil==2.9.0.post0
 python-dotenv==1.0.1
 pytz==2024.1
