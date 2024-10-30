@@ -1,0 +1,22 @@
+{% extends 'webapp/base.html' %}
+{% block content %}
+<center>
+{% if search_query %}
+    <h1> Search Results for {{ search_query }} </h1>
+    <table class="table table-striped table-hover">
+        {% for asset in search_results %}
+        <tr>
+            <td>
+                <a href="{% url 'webapp:assetdetail' asset.id%}" class="list-group-item list-group-item-action">{{ asset.asset_name }} -- {{ asset.asset_owner }}</a>
+            </td>
+            <td>
+                <a href="{% url 'webapp:assetupdate' asset.id %}"><button>Update</button></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <h1> No Search Query entered. </h1>
+{% endif %}
+</center>
+{% endblock %}

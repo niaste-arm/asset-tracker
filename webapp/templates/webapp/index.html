@@ -1,0 +1,48 @@
+{% extends 'webapp/base.html' %}
+{% block content %}
+    <head>
+    <title>Asset Tracker</title>
+    </head>
+    <body>
+    <h1>Welcome to the Asset Tracker.</h1>
+
+    {% if user.is_authenticated %}
+        <h2> Current Assets </h2>
+
+        <table class="table table-striped table-hover">
+        {% if asset_list %}
+            {% for asset in asset_list %}
+            <tr>
+                <td>
+                    <a href="{% url 'webapp:assetdetail' asset.id %}" class="list-group-item list-group-item-action">{{ asset.asset_name }} -- {{ asset.asset_owner }}</a>
+                </td>
+                <td>
+                    <a href="{% url 'webapp:assetupdate' asset.id %}"><button>Update</button></a>
+                </td>
+                {% if user.is_superuser %}
+                <form action="{% url 'webapp:deleteasset' asset.id %}" method="post">
+                    <td>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Asset?')">Delete</button>
+                    </td>
+                </form>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td>
+                <a class="list-group-item list-group-item-action">No Assets Available.</a>
+            </td>
+        </tr>
+        {% endif %}
+        </table>
+        <a href="{% url 'webapp:addasset' %}"><button> Add Asset </button></a>
+    
+    {% else %}
+    <p>You are currently not signed in to view this content. Please login or register for an account.</p>
+    <button type="submit" class="btn btn-info"><a href="{% url 'webapp:login' %}">Login</a></button>
+    <button type="submit" class="btn btn-info"><a href="{% url 'webapp:register' %}">Register</a></button>  
+    {% endif %}
+    </body>
+{% endblock %}

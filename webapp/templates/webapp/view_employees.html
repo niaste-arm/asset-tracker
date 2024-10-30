@@ -1,0 +1,44 @@
+{% extends 'webapp/base.html' %}
+{% block content %}
+    <body>
+    <h1>Employees</h1>
+
+    {% if user.is_authenticated %}
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>Current Employees</th>
+        </tr>
+    {% if employee_list %}
+        {% for employee in employee_list %}
+        <tr> 
+            <td>
+                <a href="{% url 'webapp:employeedetail' employee.id %}">{{ employee.full_name }}</a>
+            </td>
+            <td>
+                <a href="{% url 'webapp:employeeupdate' employee.id %}"><button>Update</button></a>
+            </td>
+            {% if user.is_superuser %}
+                <form action="{% url 'webapp:employeedelete' employee.id %}" method="post">
+                    <td>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this Employee?')">Delete</button>
+                    </td>
+                </form>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    {% else %}
+        <tr> 
+            <td> No Employees Available. </td>
+        </tr>
+    {% endif %}
+    </table>
+    <a href="{% url 'webapp:addemployee' %}"><Button> Add Employee </Button></a>
+
+    {% else %}
+    <p>You are currently not signed in to view this content. Please login or register for an account.</p>
+    <button type="submit" class="btn btn-info"><a href="{% url 'webapp:login' %}">Login</a></button>
+    <button type="submit" class="btn btn-info"><a href="{% url 'webapp:register' %}">Register</a></button>  
+    {% endif %}
+    </body>
+{% endblock %}

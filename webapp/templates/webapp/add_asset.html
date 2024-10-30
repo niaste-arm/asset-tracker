@@ -1,0 +1,22 @@
+{% extends 'webapp/base.html' %}
+{% block content %}
+<head>
+<title>Add a new Asset</title>
+</head>
+<body>
+    {% if submitted %}
+        <h1> Asset Entry Successful!</h1>
+        <ul><a href="{% url 'webapp:addasset' %}"> Enter another Asset? </a></ul>
+    {% else %}
+
+    <form action="", method=POST>
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+
+        <input type="submit" value="Submit" class="btn btn-secondary"> 
+    </form>
+
+    {% endif %}
+</body>
+{% endblock %}

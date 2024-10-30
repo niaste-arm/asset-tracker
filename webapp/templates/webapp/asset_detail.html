@@ -1,0 +1,16 @@
+{% extends 'webapp/base.html' %}
+{% block content %}
+<head>
+<title>Asset View: {{ asset.asset_name }}</title>
+</head>
+<body>
+
+<ul>
+    {{ asset.asset_desc }}
+</ul>
+<ul>
+    {{ asset.asset_owner }}
+</ul>
+
+</body>
+{% endblock %}

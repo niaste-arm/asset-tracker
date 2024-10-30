@@ -1,0 +1,14 @@
+{% extends 'webapp/base.html' %}
+{% block content %}
+
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+      {{ employee.full_name }}
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">{{ employee.date_of_birth }}</li>
+      <li class="list-group-item">{{ employee.address }}</li>
+    </ul>
+  </div>
+
+{% endblock %}
