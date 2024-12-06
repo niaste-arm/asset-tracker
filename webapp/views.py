@@ -48,7 +48,7 @@ def log_in(request):
                 messages.success(request, f"{username.title()} successfully logged in.")
                 return redirect('webapp:index')
     
-    messages.error(request, f"Error: invalid username/password, please try again.")
+    messages.error(request, "Error: invalid username/password, please try again.")
     return render(request, "webapp/login.html", {"form": form})
 
 def log_out(request):
@@ -58,7 +58,7 @@ def log_out(request):
     Returns: Redirects to login page
     """
     logout(request)
-    messages.success(request, f"Logout successful.")
+    messages.success(request, "Logout successful.")
     return redirect('webapp:login')
 
 def register(request):

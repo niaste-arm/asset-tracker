@@ -7,6 +7,10 @@ class Employee(models.Model):
     def __str__(self):
         return self.full_name
 
+    def is_address_valid(self):
+        ## Check if address contains a house number
+        has_house_no = any(chr.isdigit() for chr in self.address)
+        return has_house_no
 
 class Asset(models.Model):
     asset_owner = models.ForeignKey(Employee, on_delete=models.CASCADE)
