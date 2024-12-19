@@ -31,11 +31,14 @@ class FormTestCase(TestCase):
         self.assertTrue(form.is_valid())
 
     def test_add_employee_form(self):
+        ## Create sample employee for testing add employee form
         employee = Employee.objects.create(full_name="Adam Smith", 
                                 date_of_birth="1969-7-20", 
                                 address="123 Street Avenue")
         
+        ## Create employee form and test if valid
         data = {'full_name' : employee.full_name, 'date_of_birth' : employee.date_of_birth, 'address' : employee.address}
         form = EmployeeForm(data=data)
         self.assertTrue(form.is_valid())
+
 

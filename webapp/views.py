@@ -38,7 +38,6 @@ def log_in(request):
         
     elif request.method == 'POST':
         form = LoginForm(request.POST)
-
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
@@ -47,8 +46,9 @@ def log_in(request):
                 login(request, user)
                 messages.success(request, f"{username.title()} successfully logged in.")
                 return redirect('webapp:index')
-    
-    messages.error(request, "Error: invalid username/password, please try again.")
+            else:
+                messages.error(request, "Error: invalid username/password, please try again.")
+
     return render(request, "webapp/login.html", {"form": form})
 
 def log_out(request):
